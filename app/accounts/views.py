@@ -12,6 +12,7 @@ from .models import Message
 
 import requests
 import json
+from smtplib import SMTPAuthenticationError
 
 
 User = get_user_model()
@@ -41,7 +42,11 @@ class FeedbackView(LoginRequiredMixin, FormView):
                 'success': True,
                 'message': 'Письмо успешно отправлено'
             })
-        except:
+        except (SMTPAuthenticationError,) as ex:
+            template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+            err = template.format(type(ex).__name__, ex.args)
+            print(err)
+
             message.status = 'Error'
             message.save()
             errors.append(
