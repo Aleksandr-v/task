@@ -21,8 +21,13 @@ Email {}
 def send_feedback(body, email, sender):
     subject = 'Test Task'
     email_from = settings.EMAIL_HOST_USER
-    admin = get_user_model().objects.filter(is_superuser=True) \
-                            .order_by('-id')[0]
+    queryset = get_user_model().objects.filter(is_superuser=True)\
+        .order_by('-id')
+    if queryset.count():
+        admin = queryset[0]
+    else:
+        raise get_user_model().DoesNotExist
+
     recipient_list = [admin.email]
     message = ''
     if not sender:

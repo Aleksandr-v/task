@@ -42,7 +42,7 @@ class FeedbackView(LoginRequiredMixin, FormView):
                 'success': True,
                 'message': 'Письмо успешно отправлено'
             })
-        except (SMTPAuthenticationError,) as ex:
+        except (SMTPAuthenticationError, User.DoesNotExist) as ex:
             template = "An exception of type {0} occurred. Arguments:\n{1!r}"
             err = template.format(type(ex).__name__, ex.args)
             print(err)
