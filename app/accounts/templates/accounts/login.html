@@ -5,11 +5,11 @@
 {% block content %}
   <h3 class="title is-3 has-text-centered">Login Page</h3>
 
-  <div class="errors"></div>
+  <div class="info"></div>
 
   <div class="column is-8 is-offset-2">
 
-    <form action="{% url 'accounts:login' %}" class="login-form" method="POST">
+    <form action="{% url 'accounts:login' %}" class="form login-form" method="POST">
       {% csrf_token %}
       {% for field in form %}
         <div class="field">
@@ -29,5 +29,5 @@
 {% endblock %}
 
 {% block script %}
-  <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 {% endblock %}

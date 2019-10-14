@@ -9,7 +9,7 @@
 
   <div class="column is-8 is-offset-2">
 
-    <form action="{% url 'accounts:feedback' %}" class="feedback-form" method="POST">
+    <form action="{% url 'accounts:feedback' %}" class="form feedback-form" method="POST">
       {% csrf_token %}
       {% for field in form %}
         <div class="field">
@@ -31,5 +31,5 @@
 {% endblock %}
 
 {% block script %}
-  <script type="text/javascript" src="{% static 'js/feedback.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 {% endblock %}
